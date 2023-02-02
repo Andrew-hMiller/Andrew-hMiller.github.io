@@ -9,14 +9,7 @@
   <link rel="stylesheet" href="profile.css">
   <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-  <script>
-    var d = document;
-    let thequalif;
-    function init() {
-    thequalif =d.getElementById("qualif")};
-    function bread(object) {
-      object.innerHTML = "Awww yeah, we about to get this bread.";}
-  </script>
+ 
 </head>
  
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -34,11 +27,21 @@
 </nav>
   
 <!-- Section 1 -->
-  <section class="banner text-center" id="home" onload="init();">
+  <section class="banner text-center" id="home">
     <div id="overlay">
       <div class="title">
         <h1>Andrew MIller</h1>
-        <h3 id="qualif" onmousemove = "bread(thequalif);"> BYU Student, Aspiring GIS Professional, Athlete </h3>
+        <h3 id="qualif"> BYU Student, Aspiring GIS Professional, Athlete </h3>
+         <script>
+    var d = document;
+    let thequalif;
+    function init() {
+    thequalif =d.getElementById("qualif")};
+    function bread(object) {
+      object.innerHTML = "Awww yeah, we about to get this bread.";}
+  </script>
+        <div onload = "init();" onmousemove = "bread(thequalif);">
+             </div>
       </div>
       <div class="row text-center">
       </div>
