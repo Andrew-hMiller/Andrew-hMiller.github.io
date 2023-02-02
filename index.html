@@ -31,7 +31,7 @@
     <div id="overlay">
       <div class="title">
         <h1>Andrew MIller</h1>
-        <h3 id="qualif"> BYU Student, Aspiring GIS Professional, Athlete </h3>
+        <h3 id="qualif" onload = "init();" onmousedown = "bread(thequalif);"> BYU Student, Aspiring GIS Professional, Athlete </h3>
          <script>
     var d = document;
     let thequalif;
@@ -40,8 +40,6 @@
     function bread(object) {
       object.innerHTML = "Awww yeah, we about to get this bread.";}
   </script>
-        <div onload = "init();" onmousedown = "bread(thequalif);">
-             </div>
       </div>
       <div class="row text-center">
       </div>
