@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <title>Shackleton's Amazing Expedition</title>
+  <title>Shackleton's Amazing Expedition</title>\
+                                                      <!--This is the leaflet CCS file reference -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+  
+                                                         <!--this is the javascript file-->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
 </head>
  
 <body>
+  <div id="map"></div>
+  <style> #map { height: 180px; }
+  </style>
+  <script>
+  var map = L.map('map').setView([51.505, -0.09], 13);
+  </script>
   </body>
 </html>
