@@ -49,19 +49,30 @@
     polygon.bindPopup("I am a polygon.");
     
     //adding a standalone popup
-    var popup = L.popup()
-    .setLatLng([51.513, -0.09])
-    .setContent("I am a standalone popup.")
-    .openOn(map);
+    //var popup = L.popup()
+    //.setLatLng([51.513, -0.09])
+    //.setContent("I am a standalone popup.")
+    //.openOn(map);
     
-    //coordinate interaction with user
-    function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
+    //sends an alert
+    //function onMapClick(e) {
+    //alert("You clicked the map at " + e.latlng);
+    
+//}
+
+//map.on('click', onMapClick);
+    
+    //this is an interactive popup that shows where you clicked
+    var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
 }
 
 map.on('click', onMapClick);
-    
-    
   </script>
   
   </body>
