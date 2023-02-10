@@ -14,8 +14,10 @@
  
 <body>
   <div id="map"> </div>
-  <styel> #map {height: 800px; }
+  <style> #map {height: 800px; }
     </style>
+  
+  var map = L.map('map').setView([39.739, -104.99], 13);
   
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
