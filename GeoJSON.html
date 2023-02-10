@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+  <title> GeoJson Tutorial</title>
   
+  <link rel="stylesheet" href"https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        corssorigin="">
+  
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+          integrity="sha256-WBkoXOwTeyKc1OHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+          crossorigin=""></script>
   </head>
  
 <body>
+  div id="map"> </div>
+  <styel> #map {height: 800px; }
+    </style>
+  
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
   </body>
 </html>
