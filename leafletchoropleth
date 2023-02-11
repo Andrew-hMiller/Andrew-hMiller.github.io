@@ -26,6 +26,6 @@
   }).addTo(map);
   
   L.geoJson(statesData).addTo(map);
-  
+  </script>
   </body>
   </html>
