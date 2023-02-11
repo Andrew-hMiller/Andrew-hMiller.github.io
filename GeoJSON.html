@@ -106,7 +106,7 @@ L.geoJSON(geojsonFeature).addTo(map);
    fillOpacity: 0.8
  };
     
-  L.geoJSON(someGeojsonFeature, {
+  L.geoJSON(geojsonFeature, {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, geojsonMarkerOptions);
     }
