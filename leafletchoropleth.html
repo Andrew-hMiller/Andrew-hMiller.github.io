@@ -26,7 +26,7 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
   
-  L.geoJson(states-data).addTo(map);
+  L.geoJson(statesData).addTo(map);
     
   function getColor(d) {
     return d > 1000 ? '#800026' :
@@ -50,7 +50,7 @@
     };
   }
     
-  L.geoJson(statesdata, {style: style}).addTo(map);
+  L.geoJson(statesData, {style: style}).addTo(map);
     
     
   </script>
