@@ -63,10 +63,13 @@
       fillOpacity: 0.7
     });
     layer.bringToFront();
+    
+    info.update(layer.feature.properties);
   }
     
   function resetHighlight(e) {
     geojson.resetStyle(e.target);
+    info.update();
   }
     
   var geojson;
@@ -88,7 +91,39 @@
     onEachFeature: onEachFeature
   }).addTo(map);
     
+  var info = L.control():
+  
+  info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
     
+  info.update = = function (props) {
+    this._div.innerHTML = '<h4>US Population Density</h4>' + (props ? '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>': 'Hover over a state');
+  };
+    
+  info.addTo(map);
+  
+    <style>
+    info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+  }
+  
+   .info h4 {
+     margin: 0 0 5px;
+     color: #777;
+   }
+    </style>
+    
+    
+  
+ 
   </script>
   </body>
   </html>
