@@ -53,7 +53,7 @@
     
   L.geoJson(statesData, {style: style}).addTo(map);
   
-  var highlightFeature(e) {
+  function highlightFeature(e) {
     var layer = e.target;
     
     layer.setStyle({
