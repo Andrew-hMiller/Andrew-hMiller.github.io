@@ -25,6 +25,13 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
     
+    
+  function onEachFeature(feature, layer) {
+    if (feature.properties && feature.properties.popupContent) {
+      layer.bindPopup(feature.properties.popupContent);
+    }
+  }
+    
   var geojsonFeature = {
     "type": "Feature",
     "properties": {
@@ -38,7 +45,9 @@
     }
   };
   
-L.geoJSON(geojsonFeature).addTo(map);
+L.geoJSON(geojsonFeature, {
+  onEachFeature: onEachFeature
+}).addTo(map);
     
  var myLines =[{
    "type": "LineString",
@@ -111,6 +120,10 @@ L.geoJSON(geojsonFeature).addTo(map);
       return L.circleMarker(latlng, geojsonMarkerOptions);
     }
   }).addTo(map);
+    
+    
+  
+  
               
   </script>
   </body>
