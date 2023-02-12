@@ -20,7 +20,15 @@
   <script src="https://js.arcgis.com/4.25/"></script>
   
   <script>
-    require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+    require([
+      "esri/config",
+      "esri/Map", 
+      "esri/views/MapView"
+      
+      "esri/Graphic",
+      "esri/layers/GraphicsLayer"
+      
+      ],function(esriConfig, Map, MapView, Graphic, GraphicsLayer) {
       
       esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
       
@@ -34,7 +42,30 @@
         zoom: 13,
         container: "viewDiv"
     });
-        
+    
+    const graphicsLayer = new  Graphicslayer();
+    map.add(graphicsLayer);
+    
+    const point = {
+      type: "point",
+      longitude: -188.80657463861,
+      latitude: 34.0005930608889
+    };
+    const simpleMarkerSymbol = {
+      type: "simple-marker",
+      color: [226, 119, 40],
+      outline: {
+        color: [255,255,255],
+        width: 1
+      }
+    };
+    
+    const pointGraphic = new Graphic({
+      geometry: point,
+      symbol: simpleMarkerSymbol
+    });
+    graphicsLayer.add(pointGraphic);
+      
                           
                           
     });
