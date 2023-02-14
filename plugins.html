@@ -35,7 +35,7 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
       
-      var animatedMarker = L.animatedMarker(line, {
+      var animatedMarker = L.animatedMarker(line.getLatLngs(), {
         distance: 300,
         interval: 2000,
       });
