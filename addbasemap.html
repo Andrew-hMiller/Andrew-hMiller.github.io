@@ -28,6 +28,25 @@
       
       esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
       
+      const vectorTileLayer = new VectorTileLayer({
+        portalItem: {
+          id: "6976148c11bd497d8624206f9ee03e30"
+        },
+          opacity: .75
+      });
+      
+      const imageTileLayer = new Tilelayer({
+        portalItem: {
+          id: "1b243539f4514b6ba35e7d995890db1d"
+        }
+      });
+      
+      const basemap = new basemap({
+        baseLayers: [
+          imageTileLayer,
+          VectorTileLayer]
+      });
+      
       const map = new Map({
         basemap: basemap,
       });
@@ -35,6 +54,9 @@
       const view = new MapView({
         container: "viewDiv",
         map: map,
+        
+        center: [-100,40],
+        zoom: 3
         
       });
       
