@@ -109,10 +109,22 @@
     };
       
     const polygonGraphic = new Graphic({
-      geometry: polygon
+      geometry: polygon,
       symbol: simpleFillSymbol,
+      
+      attributes: attributes,
+      popupTemplate: popupTemplate
     });
     graphicsLayer.add(polygonGraphic);
+      
+    const popupTemplate = {
+      title: "{Name}",
+      content: "{Description}",
+    }
+    const attributes = {
+      title: "Graphic",
+      content: "I am a snazzy polygon",
+    }
     });
   </script>
   
