@@ -49,7 +49,7 @@
     
     const point = {
       type: "point",
-      longitude: -188.80657463861,
+      longitude: -118.80657463861,
       latitude: 34.0005930608889
     };
     const simpleMarkerSymbol = {
@@ -67,7 +67,26 @@
     });
     graphicsLayer.add(pointGraphic);
       
-                          
+    //line geometry
+    const polyline = {
+      type: "polyline",
+      paths: [
+        [-118.821527826096, 34.0139576938577],
+        [-118.814893761649, 34.0080602407843],
+        [-118.808878330345, 34.0016642996246]
+      ]
+    };
+    const simpleLineSymbol = {
+      type: "simple-line",
+      color: [226, 119, 40],
+      width: 2
+    };
+    
+    const polylineGraphic = new Graphic({
+      geometry: polyline,
+      symbol: simpleLineSymbol
+    });
+    graphicsLayer.add(polylineGraphic);
                           
     });
   </script>
