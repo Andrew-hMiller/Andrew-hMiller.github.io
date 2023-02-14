@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="uft-8" />
+    <meta name= "viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Esri Leaflet Plugin</title>
+    <!-- Load Leaflet from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="" />
+    <script src= "https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
+    <!-- Loading Esri Leaflet from CDN-->
+    <script src= "https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+    <script src= "https://unpkg.com/esri-leaflet-vector@4.0.0/dist/esri-leaflet-vector.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #323232;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="map"></div>
+    
+    <script>
+      
+      const apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
+      const basemapEnum = "ArcGIS: Navigation";
+      
+      const map = L.map("map", {
+        minZoom: 2
+      }).setView([25, -30], 2);
+      
+      L.esri.Vector.vectorBasemapLayer(basemapEnum, {
+        apiKey: apiKey
+      }).addTo(map);
+      
+    </script>
+  </body>
+</html>
