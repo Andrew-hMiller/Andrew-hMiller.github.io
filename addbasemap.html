@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <title>Adding Basemap</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content= "initial-scale=1, maximum-scale =1, user-scalable=no">
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style> <link rel ="stylesheet" href="https://js.argis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.argis.com/4.25/"></script>
+  <script>
+    
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/view/MapView",
+      
+      "esri/Basemap",
+      "esri/layers/VectorTileLayer",
+      "esri/layers/TileLayer",
+      
+    ], function(esriConfig, Map, MapView, Basemap, VectorTileLayer, TileLayer) {
+      
+      esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
+      
+      const map = new Map({
+        basemap: basemap,
+      });
+      
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        
+      });
+      
+    });
+  </script>
+  </head>
+  
+  <body>
+    <div id = "viewDiv"> </div>
+  </body>
+</html>
