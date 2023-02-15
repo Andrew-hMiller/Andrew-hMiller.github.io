@@ -30,21 +30,21 @@
     </style>
     
     <script>
-      var map = L.map('map', {fadeAnimation: False }).setView([42.0727, -113.7038], 4);
+      var map = L.map('map', {fadeAnimation: False }).setView([42.0727, -113.7038], 10);
       
       L.tileLayer.grayscale('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
       
-      var animatedMarker = L.animatedMarker(line.getLatLngs(), {
+      <!--var animatedMarker = L.animatedMarker(line.getLatLngs(), {
         distance: 300,
         interval: 2000,
       });
       
       var line = L.polyline([[43.6150, -116.2023],[42.570111, -113.515831],[41.611729, 112.083722], [40.250103, -111.639598]]),
           animatedMarker = L.animatedMarker(line.getLatLngs());
-      map.addLayer(animatedMarker);
+      map.addLayer(animatedMarker); -->
       
       
       
