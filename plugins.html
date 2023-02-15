@@ -46,6 +46,19 @@
           animatedMarker = L.animatedMarker(line.getLatLngs());
       map.addLayer(animatedMarker);
       
+      var shipIcon = L.icon({
+        iconUrl: 'ship.png',
+        shadowUrl: 'ocean.png',
+        
+        iconSize: [39, 95],
+        shadowSize: [50, 64],
+        iconAnchor: [22,94],
+        shadowAnchor: [4, 62],
+        popupAnchor: [-3, -76]
+      });
+      
+      L.marker([0, 0], {icon: greenIcon}).addTo(map);
+      
       
       
     </script>
