@@ -30,7 +30,7 @@
     </style>
     
     <script>
-      var map = L.map('map', {fadeAnimation: false }).setView([42.0727, -113.7038], 7);
+      var map = L.map('map', {fadeAnimation: false }).setView([0, 0], 7);
       
       L.tileLayer.grayscale('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -50,8 +50,8 @@
         iconUrl: 'ship.png',
         shadowUrl: 'ocean.png',
         
-        iconSize: [39, 95],
-        shadowSize: [50, 64],
+        iconSize: [40px],
+        shadowSize: [30px],
         iconAnchor: [22,94],
         shadowAnchor: [4, 62],
         popupAnchor: [-3, -76]
