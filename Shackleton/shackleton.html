@@ -1,1 +1,53 @@
-
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<title>Ernest Shackleton's Antarctic Expedition</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+  
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.25/"></script>
+  
+  <script>
+    require([
+      "esri/config",
+      "esri/Map", 
+      "esri/views/MapView",
+      
+      "esri/Graphic",
+      "esri/layers/GraphicsLayer"
+      
+      ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+      
+      esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
+      
+      const map = new Map({
+        basemap: "arcgis-topographic"
+      });
+      
+      const view = new MapView({
+        map: map,
+        center: [-70.78, -45],
+        zoom: 13,
+        container: "viewDiv"
+    });
+      
+    </script>
+  </head>
+  
+<body>
+  <div id="viewDiv"></div>
+  </body>
+</html>
