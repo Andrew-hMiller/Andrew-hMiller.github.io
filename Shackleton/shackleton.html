@@ -19,7 +19,9 @@
     <script src="https://js.arcgis.com/4.26/"></script>
 
     <script>
-      require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic",
+    "esri/layers/GraphicsLayer","esri/layers/KMLLayer",
+        "esri/widgets/ScaleBar", "esri/layers/GeoJSONLayer"], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer) {
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
 
@@ -33,6 +35,20 @@
           zoom: 6, // Zoom level
           container: "viewDiv" // Div element
         });
+        
+        const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+        
+  //      const layer = new KMLLayer({
+  //        // Shackleton Expedition
+  //       url: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=kml&minmagnitude=5.8"
+   //     });
+        
+        const geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON.js",
+  copyright: "Andrew Miller's Swag",
+  popupTemplate: template
+});
 
       });
     </script>
