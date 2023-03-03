@@ -69,6 +69,12 @@
 });
         map.add(ocean_geojsonLayer);
         
+        const continents_geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/continent_FeaturesToJSON.geojson",
+  copyright: "Andrew Miller's Swag",
+});
+        map.add(continents_geojsonLayer);
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON.geojson",
   copyright: "Andrew Miller's Swag",
