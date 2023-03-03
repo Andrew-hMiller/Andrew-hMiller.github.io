@@ -21,9 +21,17 @@
     <script>
       require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic",
     "esri/layers/GraphicsLayer","esri/layers/KMLLayer",
-        "esri/widgets/ScaleBar", "esri/layers/GeoJSONLayer"], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer) {
+        "esri/widgets/ScaleBar", "esri/layers/GeoJSONLayer", "esri/geometry/projection"], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection) {
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
+        
+        
+        let view;
+        
+        let spatialReference = new SpatialReference({
+            wkid: 6932,
+          });
+        }
 
         const map = new Map({
           basemap: "arcgis-topographic" // Basemap layer service
