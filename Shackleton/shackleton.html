@@ -63,6 +63,12 @@
   //       url: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=kml&minmagnitude=5.8"
    //     });
         
+        const ocean_geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/world30_FeaturesToJSON.geojson",
+  copyright: "Andrew Miller's Swag",
+});
+        map.add(ocean_geojsonLayer);
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON.geojson",
   copyright: "Andrew Miller's Swag",
@@ -73,6 +79,8 @@ map.add(geojsonLayer);
   copyright: "Andrew Miller's Swag",
 });
         map.add(Lines_geojsonLayer);
+        
+        
       });
     </script>
 
