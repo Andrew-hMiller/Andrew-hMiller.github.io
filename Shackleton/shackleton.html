@@ -25,9 +25,23 @@
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
         
-        let spatialReference = new SpatialReference({
+       // let spatialReference = new SpatialReference({
+       //     wkid: 6932,
+       //   });
+        
+        const wkidSelect = document.getElementById("wkid");
+        spatialReference = getSpatialReference(wkidSelect.value);
+        
+        wkidSelect.addEventListener("change", (event) => {
+          spatialReference = getSpatialReference(event.target.value);
+
+        });
+        
+        function getSpatialReference(wkid) {
+          return new SpatialReference({
             wkid: 6932,
           });
+        }
 
         const map = new Map({
           basemap: "arcgis-topographic" // Basemap layer service
