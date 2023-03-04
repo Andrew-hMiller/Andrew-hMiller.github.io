@@ -76,9 +76,19 @@
 });
         map.add(continents_geojsonLayer);
         
+        const points_renderer = {
+          symbol: {
+            type: "simple-marker",
+            color: "brown",
+            outline: {
+              color: "black"
+            }
+          },
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON.geojson",
   copyright: "Andrew Miller's Swag",
+  renderer: points_renderer
 });
 map.add(geojsonLayer);
         const Lines_geojsonLayer = new GeoJSONLayer({
