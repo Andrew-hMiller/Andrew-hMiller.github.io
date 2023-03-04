@@ -83,10 +83,22 @@
 });
         map.add(ocean_geojsonLayer);
         
-        
+        const continent_renderer = {
+  type: "simple",
+  symbol: {
+    type: "simple-fill",
+    color: [255, 255, 255],
+    outline: {
+      width: 1,
+      color: "white"
+    }
+  }
+};
+                
         const continents_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/continent_FeaturesToJSON.geojson",
   copyright: "Andrew Miller's Swag",
+  renderer: continent_renderer
 });
         map.add(continents_geojsonLayer);
         
