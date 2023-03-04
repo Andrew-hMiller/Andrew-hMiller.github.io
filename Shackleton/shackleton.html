@@ -21,7 +21,7 @@
     <script>
       require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic",
     "esri/layers/GraphicsLayer","esri/layers/KMLLayer",
-        "esri/widgets/ScaleBar", "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference"], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference) {
+        "esri/widgets/ScaleBar", "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer"], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer) {
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
         
@@ -77,6 +77,7 @@
         map.add(continents_geojsonLayer);
         
         const points_renderer = {
+          type: "simple",
           symbol: {
             type: "simple-marker",
             color: "brown",
