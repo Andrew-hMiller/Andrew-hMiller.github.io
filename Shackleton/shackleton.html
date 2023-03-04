@@ -102,6 +102,12 @@
 });
         map.add(continents_geojsonLayer);
         
+        const Lines_geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/Polylines_FeaturesToJSON.geojson",
+  copyright: "Get It",
+});
+        map.add(Lines_geojsonLayer);
+        
         const points_renderer = {
           type: "simple",
           symbol: {
@@ -118,11 +124,7 @@
   renderer: points_renderer
 });
 map.add(geojsonLayer);
-        const Lines_geojsonLayer = new GeoJSONLayer({
-  url: "https://andrew-hmiller.github.io/Shackleton/Polylines_FeaturesToJSON.geojson",
-  copyright: "Get It",
-});
-        map.add(Lines_geojsonLayer);
+        
         
         
       });
