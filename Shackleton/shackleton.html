@@ -64,11 +64,25 @@
   //       url: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=kml&minmagnitude=5.8"
    //     });
         
+        const ocean_renderer = {
+  type: "simple",
+  symbol: {
+    type: "simple-fill",
+    color: "Ocean Blue",
+    outline: {
+      width: 1,
+      color: "white"
+    }
+  }
+};
+        
         const ocean_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/world30_FeaturesToJSON.geojson",
-  copyright: "Andrew Miller's Swag",
+  copyright: "Get It",
+  renderer: ocean_renderer
 });
         map.add(ocean_geojsonLayer);
+        
         
         const continents_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/continent_FeaturesToJSON.geojson",
@@ -88,13 +102,13 @@
         
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON.geojson",
-  copyright: "Andrew Miller's Swag",
+  copyright: "Get It",
   renderer: points_renderer
 });
 map.add(geojsonLayer);
         const Lines_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Polylines_FeaturesToJSON.geojson",
-  copyright: "Andrew Miller's Swag",
+  copyright: "Get It",
 });
         map.add(Lines_geojsonLayer);
         
