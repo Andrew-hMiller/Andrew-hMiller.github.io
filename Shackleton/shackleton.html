@@ -102,9 +102,19 @@
 });
         map.add(continents_geojsonLayer);
         
+        const lines_renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-line",
+            color: "black",
+            BorderStyle="DashDotDot"
+            
+          }};
+        
         const Lines_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_polylines.geojson",
   copyright: "Get It",
+  renderer: lines_renderer
 });
         map.add(Lines_geojsonLayer);
         
