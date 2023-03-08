@@ -128,12 +128,22 @@
             }
           }};
         
+        const popup_template = {
+          title: {Name}
+        };
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_points.geojson",
   copyright: "Get It",
-  renderer: points_renderer
+  renderer: points_renderer,
+  popupTemplate: popup_template
 });
 map.add(geojsonLayer);
+        
+        
+        
+        
+        
         
         
         
