@@ -133,7 +133,7 @@
           content: "{PopupInfo}"
         };
         
-        const points_label = {
+        const labelClass = {
           symbol: {
             type: "text",
             color: "black",
@@ -155,7 +155,7 @@
   copyright: "Get It",
   renderer: points_renderer,
   popupTemplate: popup_template,
-  labelingInfo: [points_label]
+  labelingInfo: [labelClass]
 });
 map.add(geojsonLayer);
         
