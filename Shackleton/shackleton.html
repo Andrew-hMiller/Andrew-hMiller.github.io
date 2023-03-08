@@ -145,6 +145,9 @@
             haloColor: "white",
             haloSize: "1",
             labelPlacement: "above-right",
+            labelExpressionInfo: {
+    expression: "{Name}"
+            }
           }};
         
         const geojsonLayer = new GeoJSONLayer({
@@ -152,7 +155,7 @@
   copyright: "Get It",
   renderer: points_renderer,
   popupTemplate: popup_template,
-  labelingInfo: points_label
+  labelingInfo: [points_label]
 });
 map.add(geojsonLayer);
         
