@@ -133,11 +133,26 @@
           content: "{PopupInfo}"
         };
         
+        const points_label = {
+          symbol: {
+            type: "text",
+            color: "black",
+            font: {
+              family: "Josefin Sans Regular",
+              size: 12,
+              weight: "bold"
+            },
+            haloColor: "white",
+            haloSize: "1",
+            labelPlacement: "above-right",
+          }};
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_points.geojson",
   copyright: "Get It",
   renderer: points_renderer,
-  popupTemplate: popup_template
+  popupTemplate: popup_template,
+  labelingInfo: points_label
 });
 map.add(geojsonLayer);
         
