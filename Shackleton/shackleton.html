@@ -19,9 +19,13 @@
     <script src="https://js.arcgis.com/4.26/"></script>
 
     <script>
-      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic",
-    "esri/layers/GraphicsLayer","esri/layers/KMLLayer",
-        "esri/widgets/ScaleBar", "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer", "esri/layers/support/LabelClass"], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer, LabelClass) {
+      require([
+                "esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer","esri/layers/KMLLayer", "esri/widgets/ScaleBar", 
+        "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer","esri/layers/support/LabelClass", 
+        "esri/widgets/TimeSlider"],
+              function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer, LabelClass, 
+                        TimeSlider)
+        {
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
         
@@ -151,11 +155,29 @@
             }
           }};
         
+ /*       const timeSlider = new TimeSlider({
+  container: "timeSliderDiv",
+  view: view,
+  // show data within a given time range
+  // in this case data within one year
+  mode: "time-window",
+  fullTimeExtent: { // entire extent of the timeSlider
+    start: new Date(1914, 11, 5),
+    end: new Date(1916, 8, 30)
+  },
+  timeExtent: { // location of timeSlider thumbs
+    start: new Date(1914,11, 5),
+    end: new Date(1916, 9, 1)
+  }
+});
+view.ui.add(timeSlider, "manual"); */
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_points.geojson",
   copyright: "Get It",
   renderer: points_renderer,
   popupTemplate: popup_template,
+  labelsVisible: true,
   labelingInfo: [labelClass]
 });
 map.add(geojsonLayer);
