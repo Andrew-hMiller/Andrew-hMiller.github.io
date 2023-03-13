@@ -155,22 +155,23 @@
             }
           }};
         
- /*       const timeSlider = new TimeSlider({
+        const timeSlider = new TimeSlider({
   container: "timeSliderDiv",
   view: view,
   // show data within a given time range
   // in this case data within one year
   mode: "time-window",
+  timeVisible: true,
   fullTimeExtent: { // entire extent of the timeSlider
-    start: new Date(1914, 11, 5),
-    end: new Date(1916, 8, 30)
+    start: new Date(1914, 11, 1),
+    end: new Date(1916, 9, 1)
   },
   timeExtent: { // location of timeSlider thumbs
-    start: new Date(1914,11, 5),
-    end: new Date(1916, 9, 1)
+    start: new Date(1914, 11, 5),
+    end: new Date(1916, 8, 30)
   }
 });
-view.ui.add(timeSlider, "manual"); */
+view.ui.add(timeSlider, "manual");
         
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_points.geojson",
