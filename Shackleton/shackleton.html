@@ -155,6 +155,18 @@
             }
           }};
         
+        
+        
+        const geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON2.geojson",
+  copyright: "Get It",
+  renderer: points_renderer,
+  popupTemplate: popup_template,
+  labelsVisible: true,
+  labelingInfo: [labelClass]
+});
+map.add(geojsonLayer);
+        
         const timeSlider = new TimeSlider({
   container: "timeSliderDiv",
   view: view,
@@ -172,18 +184,6 @@
   }
 });
 view.ui.add(timeSlider, "manual");
-        
-        const geojsonLayer = new GeoJSONLayer({
-  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON2.geojson",
-  copyright: "Get It",
-  renderer: points_renderer,
-  popupTemplate: popup_template,
-  labelsVisible: true,
-  labelingInfo: [labelClass]
-});
-map.add(geojsonLayer);
-        
-        
         
         
         
