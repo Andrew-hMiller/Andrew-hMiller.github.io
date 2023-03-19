@@ -184,9 +184,13 @@ map.add(geojsonLayer);
   timeExtent: { // location of timeSlider thumbs
     start: new Date(1914, 12, 5),
     end: new Date(1916, 8, 30)
-  }
+  },
+  tickConfigs: [{
+    mode: "position",
+    values: [
+      new Date(
 });
-view.ui.add(timeSlider, "bottom-middle");
+view.ui.add(timeSlider, "manual");
         
         
         
