@@ -22,9 +22,9 @@
       require([
                 "esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer","esri/layers/KMLLayer", "esri/widgets/ScaleBar", 
         "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer","esri/layers/support/LabelClass", 
-        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues"],
+        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues", "esri/layers/support/TimeInfo"],
               function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer, LabelClass, 
-                        TimeSlider, uniqueValues)
+                        TimeSlider, uniqueValues,TimeInfo)
         {
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
@@ -164,9 +164,14 @@
   popupTemplate: popup_template,
   labelsVisible: true,
   labelingInfo: [labelClass],
-  //timeInfo: {
-  //  startField: "Date"
-  //}
+  timeInfo: {
+      startField: "Date",
+      fullTimeExtent: { // entire extent of the timeSlider
+        start: new Date(1914, 12, 5),
+        end: new Date(1916, 8, 30)}
+         
+  },
+    
 });
 map.add(geojsonLayer);
         let Dates_array = []
