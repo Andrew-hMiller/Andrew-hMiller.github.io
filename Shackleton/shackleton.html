@@ -169,6 +169,17 @@
   }
 });
 map.add(geojsonLayer);
+        let Dates_array = []
+         uniqueValues({
+          layer: geojsonLayer,
+          field: "Date"
+        }).then(function(response){
+          let infos = response.uniqueValueInfos;
+          infos.forEach(function(info){
+            const dt = new Date(info.value);
+      Dates_array.push(dt);
+          });
+            
         
         const timeSlider = new TimeSlider({
   container: "timeSliderDiv",
@@ -195,15 +206,8 @@ map.add(geojsonLayer);
      // return date.getUTCFullYear(); // show full year values
           }
 }],
-   stops: {
-    dates: "Date"
-      //new Date(2000, 0, 1),
-     // new Date(2001, 3, 8),
-      //new Date(2002, 0, 10),
-     // new Date(2003, 12, 8),
-     // new Date(2004, 2, 19)
-    
-  }
+   stops: {Dates_array}
+
     
         });
 view.ui.add(timeSlider, "manual");
