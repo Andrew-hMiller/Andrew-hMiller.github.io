@@ -188,7 +188,8 @@ map.add(geojsonLayer);
   tickConfigs: [{
     mode: "position",
     values: [
-      new Date(
+      new Date(1915, 0, 1), new Date(1916, 0, 1), new Date(1917, 0, 1)].map((date) => date.getTime())),
+    labelsVisible: true,
 });
 view.ui.add(timeSlider, "manual");
         
