@@ -163,7 +163,10 @@
   renderer: points_renderer,
   popupTemplate: popup_template,
   labelsVisible: true,
-  labelingInfo: [labelClass]
+  labelingInfo: [labelClass],
+  timeInfo: {
+    startField: "Date"
+  }
 });
 map.add(geojsonLayer);
         
