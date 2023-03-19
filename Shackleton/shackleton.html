@@ -188,8 +188,12 @@ map.add(geojsonLayer);
   tickConfigs: [{
     mode: "position",
     values: [
-      new Date(1915, 0, 1), new Date(1916, 0, 1), new Date(1917, 0, 1)],
+      new Date(1915, 0, 1), new Date(1916, 0, 1), new Date(1917, 0, 1)].map((date) => date.getTime()),
     labelsVisible: true,
+    labelFormatFunction: (value) => { // format the labels for the ticks
+      const date = new Date(value);
+      return date.getUTCFullYear(); // show full year values
+          }
 }]
         });
 view.ui.add(timeSlider, "manual");
