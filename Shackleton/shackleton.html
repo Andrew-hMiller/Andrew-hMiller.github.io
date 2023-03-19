@@ -187,12 +187,12 @@ map.add(geojsonLayer);
   },
   tickConfigs: [{
     mode: "position",
-    values: [
-      new Date(1914, 0, 1), new Date(1915, 0, 1), new Date(1916, 0, 1), new Date(1917, 0, 1)].map((date) => date.getTime()),
-    labelsVisible: true,
-    labelFormatFunction: (value) => { // format the labels for the ticks
-      const date = new Date(value);
-      return date.getUTCFullYear(); // show full year values
+    //values: [
+    //  new Date(1914, 0, 1), new Date(1915, 0, 1), new Date(1916, 0, 1), new Date(1917, 0, 1)].map((date) => date.getTime()),
+    //labelsVisible: true,
+    //labelFormatFunction: (value) => { // format the labels for the ticks
+     // const date = new Date(value);
+     // return date.getUTCFullYear(); // show full year values
           }
 }]
         });
