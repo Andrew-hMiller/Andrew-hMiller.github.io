@@ -137,7 +137,7 @@
           content: "{PopupInfo}"
         };
         
-        const labelClass = {
+        /*const labelClass = {
           symbol: {
             type: "text",
   /*          color: "black",
@@ -149,11 +149,11 @@
             haloColor: "white",
             haloSize: "1",
             labelPlacement: "above-right",
-            */
+            
             labelExpressionInfo: {
     expression: "'This is a test'+$feature.Name"
             }
-          }};
+          }};*/
         
         const dates_renderer = {
           type: "simple",
@@ -163,14 +163,15 @@
             color: "black"
           }};
         
-        const dataLabels = {
+        const labelClass = {
           symbol: {
             type: "text",
             color: "black",
-            font: {
-              size: 12,
-              weight: "bold"
-            },
+            font: {  // autocast as new Font()
+       family: "Ubuntu Mono",
+       size: 14,
+       weight: "bold"
+     },
             haloColor: "white",
             haloSize: "1",
             labelPlacement: "above-center",
@@ -199,7 +200,7 @@ map.add(geojsonLayer);
   renderer: dates_renderer,
   popupTemplate: popup_template,
   labelsVisible: true,
-  labelingInfo: [dataLabels],
+  labelingInfo: [labelClass],
   timeInfo: {
       startField: "Date",
 
