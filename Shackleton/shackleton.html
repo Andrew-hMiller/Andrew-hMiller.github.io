@@ -168,7 +168,6 @@
             type: "text",
             color: "black",
             font: {
-              family: "Josefin Sans Regular",
               size: 12,
               weight: "bold"
             },
@@ -176,7 +175,7 @@
             haloSize: "1",
             labelPlacement: "above-center",
             labelExpressionInfo: {
-    expression: "$feature.Date"
+    expression: "Hi"
             }
           }};
         
@@ -186,6 +185,7 @@
   renderer: points_renderer,
   labelsVisible: true,
   labelingInfo: [labelClass],
+  popupTemplate: popup_template,
   timeInfo: {
       startField: "Date",     
   },
