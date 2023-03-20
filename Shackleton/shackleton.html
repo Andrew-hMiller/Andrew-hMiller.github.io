@@ -205,12 +205,18 @@ map.add(geojsonLayer);
     labelExpressionInfo: { expression: "$feature.LABEL" }, //This does not work
     // labelExpressionInfo: { expression: "$feature.core_details" }, //This works, although it casts to string
     // labelExpressionInfo: { expression: "Concatenate([$feature.pattern,$feature.is_in_transport_position], TextFormatting.NewLine)" }, //This works
-     labelPlacement: "above-center",
+     labelPlacement: "above-right",
     symbol: {
       type: "text",  // autocasts as new TextSymbol()
       color: "black",
       haloSize: 1,
-      haloColor: "white"
+      haloColor: "white",
+      font: {
+        family: "IM FELL DW Pica PRO",
+        style: "italic",
+        weight: "normal"
+  }
+}
     }
   }],
   timeInfo: {
