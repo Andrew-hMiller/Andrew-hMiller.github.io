@@ -46,11 +46,29 @@
     
     const graphicsLayer = new  GraphicsLayer();
     map.add(graphicsLayer);
+      
+    const labelClass = {
+  // autocasts as new LabelClass()
+  symbol: {
+    type: "text",  // autocasts as new TextSymbol()
+    color: "green",
+    font: {  // autocast as new Font()
+      family: "Playfair Display",
+      size: 12,
+      weight: "bold"
+    }
+  },
+  labelPlacement: "above-center",
+  labelExpressionInfo: {
+    expression: "What up homie"
+  }
+};
     
     const point = {
       type: "point",
       longitude: -118.80657463861,
-      latitude: 34.0005930608889
+      latitude: 34.0005930608889,
+      labelingInfo: labelClass
     };
     const simpleMarkerSymbol = {
       type: "simple-marker",
