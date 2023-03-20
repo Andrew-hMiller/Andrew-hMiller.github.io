@@ -155,15 +155,51 @@
             }
           }};
         
+        const dates_renderer = {
+          type: "simple",
+          symbol: {
+            size: 0
+            type: "simple-marker",
+            color: "black"
+          }};
         
+        const dataLabels = {
+          symbol: {
+            type: "text",
+            color: "black",
+            font: {
+              family: "Josefin Sans Regular",
+              size: 12,
+              weight: "bold"
+            },
+            haloColor: "white",
+            haloSize: "1",
+            labelPlacement: "above-center",
+            labelExpressionInfo: {
+    expression: "$feature.Date"
+            }
+          }};
         
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON2.geojson",
   copyright: "Get It",
+  renderer: dates_renderer,
+  labelsVisible: true,
+  labelingInfo: [labelClass],
+  timeInfo: {
+      startField: "Date",     
+  },
+    
+});
+map.add(geojsonLayer);
+        
+        const geojsonLayer_dates = new GeoJSONLayer({
+  url: "https://andrew-hMiller.github.io/Shackleton/Big_Events_FeaturesToJSON_1.geojson",
+  copyright: "",
   renderer: points_renderer,
   popupTemplate: popup_template,
   labelsVisible: true,
-  labelingInfo: [labelClass],
+  labelingInfo: [dataLabels],
   timeInfo: {
       startField: "Date",
 
