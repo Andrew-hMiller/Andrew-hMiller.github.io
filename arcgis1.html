@@ -67,8 +67,7 @@
     const point = {
       type: "point",
       longitude: -118.80657463861,
-      latitude: 34.0005930608889,
-      labelingInfo: labelClass
+      latitude: 34.0005930608889
     };
     const simpleMarkerSymbol = {
       type: "simple-marker",
@@ -81,7 +80,8 @@
     
     const pointGraphic = new Graphic({
       geometry: point,
-      symbol: simpleMarkerSymbol
+      symbol: simpleMarkerSymbol,
+      labelingInfo: labelClass
     });
     graphicsLayer.add(pointGraphic);
       
