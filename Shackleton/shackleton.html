@@ -158,7 +158,7 @@
         const dates_renderer = {
           type: "simple",
           symbol: {
-            size: 0,
+            size: 0.5,
             type: "simple-marker",
             color: "black"
           }};
@@ -183,7 +183,7 @@
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON2.geojson",
   copyright: "Get It",
-  renderer: dates_renderer,
+  renderer: points_renderer,
   labelsVisible: true,
   labelingInfo: [labelClass],
   timeInfo: {
@@ -196,7 +196,7 @@ map.add(geojsonLayer);
         const geojsonLayer_dates = new GeoJSONLayer({
   url: "https://andrew-hMiller.github.io/Shackleton/Big_Events_FeaturesToJSON_1.geojson",
   copyright: "",
-  renderer: points_renderer,
+  renderer: dates_renderer,
   popupTemplate: popup_template,
   labelsVisible: true,
   labelingInfo: [dataLabels],
