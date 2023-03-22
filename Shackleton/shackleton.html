@@ -68,6 +68,14 @@
               content: "Mouse over features to show details..."
             }
           };
+          
+          // Provide graphic to a new instance of a Feature widget
+          const feature = new Feature({
+            container: "feature-node",
+            graphic: graphic,
+            map: view.map,
+            spatialReference: view.spatialReference
+          });
         
         const graphicsLayer = new GraphicsLayer();
  map.add(graphicsLayer);
