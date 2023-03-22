@@ -234,7 +234,7 @@ map.add(geojsonLayer);
 // is not simultaneously invoked more than once at a time
 const debouncedUpdate = promiseUtils.debounce((event) => {
   // Perform a hitTest on the View
-  const hitTest = await view.hitTest(event);
+  // const hitTest = await view.hitTest(event);
   // Make sure graphic has a popupTemplate
   const results = hitTest.results.filter((result) => {
     return result.graphic.layer.popupTemplate;
