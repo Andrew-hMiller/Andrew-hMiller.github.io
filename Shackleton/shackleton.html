@@ -22,7 +22,7 @@
       require([
                 "esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer","esri/layers/KMLLayer", "esri/widgets/ScaleBar", 
         "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer","esri/layers/support/LabelClass", 
-        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues", "esri/layers/support/TimeInfo", "esri/widgets/Feature", "esri/core/promiseUtils"],
+        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues", "esri/layers/support/TimeInfo", "esri/widgets/", "esri/core/promiseUtils"],
               function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer, LabelClass, 
                         TimeSlider, uniqueValues,TimeInfo, Feature, promiseUtils)
         {
@@ -75,8 +75,8 @@
             graphic: graphic,
             map: view.map,
             spatialReference: view.spatialReference
-          }));
-        
+          });
+)        
         const graphicsLayer = new GraphicsLayer();
  map.add(graphicsLayer);
         
@@ -390,7 +390,10 @@ view.ui.add(timeSlider, "manual");
 <h1 style="font-family: Trattatello, fantasy;">Expedition of Ernest Shackleton and the Endurance</h1>
 <p><em>December 1914 - July 1916</em></p>
 </div>
+     <!-- side panel on page)
                                               
+     <div id="feature-node" class="esri-widget"></div>  
+                                               
     <!-- webmap on page -->
                                               
     <div id="viewDiv"></div>
