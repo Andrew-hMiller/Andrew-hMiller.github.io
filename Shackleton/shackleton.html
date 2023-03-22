@@ -22,9 +22,9 @@
       require([
                 "esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer","esri/layers/KMLLayer", "esri/widgets/ScaleBar", 
         "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer","esri/layers/support/LabelClass", 
-        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues", "esri/layers/support/TimeInfo"],
+        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues", "esri/layers/support/TimeInfo", "esri/widgets/Feature", "esri/core/promiseUtils"],
               function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer, LabelClass, 
-                        TimeSlider, uniqueValues,TimeInfo)
+                        TimeSlider, uniqueValues,TimeInfo, Feature, promiseUtils)
         {
 
         esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
@@ -61,6 +61,14 @@
           scale: 12275384
         });
         
+        view.when().then(() => {
+          // Create a default graphic for when the application starts
+          const graphic = {
+            popupTemplate: {
+              content: "Mouse over features to show details..."
+            }
+          };
+        
         const graphicsLayer = new GraphicsLayer();
  map.add(graphicsLayer);
         
@@ -68,6 +76,8 @@
   //        // Shackleton Expedition
   //       url: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=kml&minmagnitude=5.8"
    //     });
+        
+        //ocean symbology -----------------------------
         
         const ocean_renderer = {
   type: "simple",
@@ -80,6 +90,8 @@
     }
   }
 };
+    
+     //ocean layer-------------------------------
         
         const ocean_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/ocean_clip.geojson",
@@ -87,6 +99,8 @@
   renderer: ocean_renderer
 });
         map.add(ocean_geojsonLayer);
+        
+     //continents symbology--------------------------
         
         const continent_renderer = {
   type: "simple",
@@ -99,7 +113,8 @@
     }
   }
 };
-                
+      //continents layer--------------------------------
+        
         const continents_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/continents_clip.geojson",
   copyright: "Andrew Miller's Swag",
@@ -107,6 +122,7 @@
 });
         map.add(continents_geojsonLayer);
         
+     //route symbology------------------------------------   
         const lines_renderer = {
           type: "simple",
           symbol: {
@@ -115,12 +131,15 @@
             
           }};
         
+     //route layer-------------------------------------------   
         const Lines_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_polylines.geojson",
   copyright: "Get It",
   renderer: lines_renderer
 });
         map.add(Lines_geojsonLayer);
+        
+     //points symbology -------------------------------------
         
         const points_renderer = {
           type: "simple",
@@ -132,10 +151,14 @@
             }
           }};
         
+        //points popup info --------------------------------
+        
         const popup_template = {
           title: "Imperial Trans-Antarctic Expedition",
           content: "{PopupInfo}"
         };
+        
+        //points labelling ---------------------------------
         
         /*const labelClass = {
           symbol: {
@@ -154,6 +177,8 @@
     expression: "'This is a test'+$feature.Name"
             }
           }};*/
+        
+        //dates symbology (as minimal as possible) ----------------
         
         const dates_renderer = {
           type: "simple",
@@ -180,6 +205,8 @@
             }
           }}; */
         
+        //points layer -----------------------------------------
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON2.geojson",
   copyright: "Get It",
@@ -193,6 +220,8 @@
     
 });
 map.add(geojsonLayer);
+        
+      //dates layer ----------------------------------------
         
         const geojsonLayer_dates = new GeoJSONLayer({
   url: "https://andrew-hMiller.github.io/Shackleton/Big_Events_FeaturesToJSON_1.geojson",
@@ -227,6 +256,9 @@ map.add(geojsonLayer);
     
 });
 map.add(geojsonLayer_dates);
+        
+      //attempt to create a list of dates for stops on timeslider ---------------  
+        
         let Dates_array = []
          uniqueValues({
           layer: geojsonLayer,
@@ -238,6 +270,8 @@ map.add(geojsonLayer_dates);
       Dates_array.push(dt);
           });
          });  
+        
+      //timeslider widget -----------------------------------
         
         const timeSlider = new TimeSlider({
   container: "timeSliderDiv",
@@ -342,10 +376,15 @@ view.ui.add(timeSlider, "manual");
     </style>
   </head>
   <body>
+    // header on page ---------------------------------
+    
     <div style="background-image: url('/Shackleton/endurance_1.jpg'); background-size:contain;>
 <h1 style="font-family: Trattatello, fantasy;">Expedition of Ernest Shackleton and the Endurance</h1>
 <p><em>December 1914 - July 1916</em></p>
 </div>
+                                              
+    // webmap on page -------------------------------------
+                                              
     <div id="viewDiv"></div>
   </body>
 </html>
