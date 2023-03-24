@@ -222,6 +222,8 @@
     
 });
 map.add(geojsonLayer);
+geojsonLayer.on("click", function(event){
+  console.log(event.mapPoint);
         
       //dates layer ----------------------------------------
         
