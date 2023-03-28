@@ -366,8 +366,21 @@ map.add(geojsonLayer_dates);
 view.ui.add(timeSlider, "manual");
         
         
-        
-        
+view.when().then(() => {
+          // Create a default graphic for when the application starts
+          const graphic = {
+            popupTemplate: {
+              content: "Mouse over features to show details..."
+            }
+          };
+
+          // Provide graphic to a new instance of a Feature widget
+          const feature = new Feature({
+            container: "feature-node",
+            graphic: graphic,
+            map: view.map,
+            spatialReference: view.spatialReference
+          });
         
         
       });
@@ -394,7 +407,7 @@ view.ui.add(timeSlider, "manual");
                      
     <!-- side panel on page) -->
                                              
-     <div id="featurenode" class="esri-widget">This is a test.</div>  
+     <div id="featurenode" class="esri-widget"></div>  
                                                
   </body>
 </html>
