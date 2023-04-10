@@ -24,6 +24,11 @@
         border: 2px solid black;
         outline-style: solid;
       }
+      #timeSlider {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        bottom: 20px;
       h1 {
         font-family: 'Tangerine', serif;
         font-size: 48px;
@@ -372,7 +377,7 @@ map.add(geojsonLayer_dates);
    }
     
         });
-view.ui.add(timeSlider, "manual", {position: "bottom-left"});
+view.ui.add(timeSlider, "manual");
         
         
 view.when().then(() => {
