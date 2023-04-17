@@ -170,12 +170,16 @@
             }
           }};
         
-        //points popup info --------------------------------
+        //points and side popup info --------------------------------
         
         const popup_template = {
           title: "Imperial Trans-Antarctic Expedition",
           content: "{PopupInfo}"
         };
+        
+        const sidePopup_Template = {
+          title: "Imperial Trans-Antarctic Expedition",
+          content: "{sidepopup}"
         
         //points labelling ---------------------------------
         
@@ -232,7 +236,7 @@
   renderer: points_renderer,
   labelsVisible: true,
   
-  popupTemplate: popup_template,
+  popupTemplate: sidePopup_Template,
   timeInfo: {
       startField: "Date",     
   },
