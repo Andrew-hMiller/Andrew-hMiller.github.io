@@ -419,7 +419,7 @@ view.when().then(() => {
 
               const result = results[0];
               const newObjectId =
-                result && result.graphic.attributes[geojsonLayer.objectIdField];
+                result && result.graphic.attributes[geojsonLayer.properties.sidepopup]; //objectIdField
 
               if (!newObjectId) {
                 highlight?.remove();
