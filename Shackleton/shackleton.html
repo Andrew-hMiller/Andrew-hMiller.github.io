@@ -416,7 +416,7 @@ view.when().then(() => {
               const newObjectId =
                 result && result.graphic.attributes[geojsonLayer.objectIdField];
 
-              if (!newObject) {
+              if (!newObjectId) {
                 highlight?.remove();
                 objectId = feature.graphic = null;
               } else if (objectId !== newObjectId) {
