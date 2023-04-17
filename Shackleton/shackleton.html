@@ -10,13 +10,13 @@
         float: left;
         padding: 0;
         margin: 0;
-        height: 100%;
+        height: 90%;
         width: 75%;
       }
       #featurenode {
         float: left;
         width: 25%;
-        height: 100%;
+        height: 90%;
         padding: 1em;
         overflow: scroll;
         max-height: 100%;
@@ -29,6 +29,9 @@
         left: 5%;
         right: 5%;
         bottom: 20px;
+      }
+      #header {
+        height: 10%;
       }
       h1 {
         font-family: 'Tangerine', serif;
@@ -413,7 +416,7 @@ view.when().then(() => {
               const newObjectId =
                 result && result.graphic.attributes[geojsonLayer.objectIdField];
 
-              if (!newObjectId) {
+              if (!newObject) {
                 highlight?.remove();
                 objectId = feature.graphic = null;
               } else if (objectId !== newObjectId) {
@@ -447,7 +450,7 @@ view.when().then(() => {
   <body>
     <!-- header on page -->
     
-    <div style="background-image: url('/Shackleton/endurance_1.jpg'); background-size:contain;">
+    <div id="header" style="background-image: url('/Shackleton/endurance_1.jpg'); background-size:contain;">
 <h1>Expedition of Ernest Shackleton and the Endurance</h1>
 <p><em>December 1914 - July 1916</em></p>
 </div>
