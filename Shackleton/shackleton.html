@@ -238,6 +238,7 @@
   labelsVisible: true,
   
   popupTemplate: popup_template,
+  sidepopupTemplate: sidePopup_Template, 
   timeInfo: {
       startField: "Date",     
   },
@@ -414,7 +415,7 @@ view.when().then(() => {
               const hitTest = await view.hitTest(event);
               // Make sure graphic has a popupTemplate
               const results = hitTest.results.filter((result) => {
-                return result.graphic.layer.popupTemplate;
+                return result.graphic.layer.sidepopupTemplate; //popupTemplate
               });
 
               const result = results[0];
