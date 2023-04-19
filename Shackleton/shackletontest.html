@@ -174,24 +174,7 @@
         
         const popup_template = {
           title: "Imperial Trans-Antarctic Expedition",
-          content: [
-            {
-              type: "fields",
-              fieldsInfo: [
-                {
-                  fieldName: "{sidepopup}",
-                  visible: true,
-                  label: "{sidepopup}"
-                },
-                {
-                  fieldName: "{PopupInfo}",
-                  visible: true,
-                  label: "{PopupInfo}"
-                }
-                ]
-               //"{PopupInfo}"
-            }],
-        outFields: ["*"]
+          content: "{PopupInfo}"
         };
         
         const sidePopup_Template = {
