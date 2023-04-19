@@ -415,7 +415,7 @@ view.when().then(() => {
               const hitTest = await view.hitTest(event);
               // Make sure graphic has a popupTemplate
               const results = hitTest.results.filter((result) => {
-                return result.graphic.layer.sidepopupTemplate; //popupTemplate
+                return result.layer.sidepopupTemplate; //popupTemplate
               });
 
               const result = results[0];
