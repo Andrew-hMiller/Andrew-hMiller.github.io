@@ -1,0 +1,489 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Shackleton Expedition</title>
+
+    <style>
+
+      #viewDiv {
+        float: left;
+        padding: 0;
+        margin: 0;
+        height: 87%;
+        width: 75%;
+      }
+      #featurenode {
+        float: left;
+        width: 25%;
+        height: 87%;
+        padding: 1em;
+        overflow: scroll;
+        max-height: 100%;
+        background-image: url('/Shackleton/ship1.png') ;
+        border: 2px solid black;
+        outline-style: solid;
+      }
+      #timeSlider {
+        position: absolute;
+        left: 5%;
+        right: 30%;
+        bottom: 20px;
+      }
+      #header {
+        height: 13%;
+      }
+      h1 {
+        font-family: 'Tangerine', serif;
+        font-size: 48px;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.26/"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+    <script>
+      require([
+                "esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer","esri/layers/KMLLayer", "esri/widgets/ScaleBar", 
+        "esri/layers/GeoJSONLayer", "esri/geometry/projection", "esri/geometry/SpatialReference", "esri/renderers/SimpleRenderer","esri/layers/support/LabelClass", 
+        "esri/widgets/TimeSlider", "esri/smartMapping/statistics/uniqueValues", "esri/layers/support/TimeInfo", "esri/widgets/Feature", "esri/core/promiseUtils"],
+              function(esriConfig, Map, MapView, Graphic, GraphicsLayer, KMLLayer, ScaleBar, GeoJSONLayer, projection, SpatialReference, SimpleRenderer, LabelClass, 
+                        TimeSlider, uniqueValues,TimeInfo, Feature, promiseUtils)
+        {
+
+        esriConfig.apiKey = "AAPKc1ce35c3cc1a41349a7ad53efc2a3c342HLRocIGFJd6zwrvpteHeRYmabOWa_Rzyex3Pkk0gmmn8VQBfruTe4U-EAK1Q171";
+        
+        let spatialReference = new SpatialReference({
+            wkid: 6932,
+          });
+        
+       // const wkidSelect = document.getElementById("wkid");
+       // spatialReference = getSpatialReference(wkidSelect.6932);
+        
+       // wkidSelect.addEventListener("change", (event) => {
+        //  spatialReference = getSpatialReference(event.target.6932);
+
+       // });
+        
+        function getSpatialReference(wkid) {
+          return new SpatialReference({
+            wkid: 6932,
+          });
+        }
+
+        const map = new Map({
+          basemap: "arcgis-topographic" // Basemap layer service
+        });
+
+        const view = new MapView({
+          map: map,
+          center: [-40, -67], // Longitude, latitude
+          zoom: 9, // Zoom level
+          container: "viewDiv", // Div element
+          spatialReference: spatialReference,
+          rotation: 45,
+          scale: 18005384  //12275384
+        });
+        
+        
+        const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+        
+  //      const layer = new KMLLayer({
+  //        // Shackleton Expedition
+  //       url: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=kml&minmagnitude=5.8"
+   //     });
+        
+        //ocean symbology -----------------------------
+        
+        const ocean_renderer = {
+  type: "simple",
+  symbol: {
+    type: "simple-fill",
+    color: [173, 216, 230],
+    outline: {
+      width: 1,
+      color: "white"
+    }
+  }
+};
+    
+     //ocean layer-------------------------------
+        
+        const ocean_geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/ocean_clip.geojson",
+  copyright: "Get It",
+  renderer: ocean_renderer
+});
+        map.add(ocean_geojsonLayer);
+        
+     //continents symbology--------------------------
+        
+        const continent_renderer = {
+  type: "simple",
+  symbol: {
+    type: "simple-fill",
+    color: [255, 255, 255],
+    outline: {
+      width: 1,
+      color: "white"
+    }
+  }
+};
+      //continents layer--------------------------------
+        
+        const continents_geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/continents_clip.geojson",
+  copyright: "Andrew Miller's Swag",
+  renderer: continent_renderer
+});
+        map.add(continents_geojsonLayer);
+        
+     //route symbology------------------------------------   
+        const lines_renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-line",
+            color: "black"
+            
+          }};
+        
+     //route layer-------------------------------------------   
+        const Lines_geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/new_polylines.geojson",
+  copyright: "Get It",
+  renderer: lines_renderer
+});
+        map.add(Lines_geojsonLayer);
+        
+     //points symbology -------------------------------------
+        
+        const points_renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-marker",
+            color: "brown",
+            outline: {
+              color: "black"
+            }
+          }};
+        
+        //points and side popup info --------------------------------
+        
+        const popup_template = {
+          title: "Imperial Trans-Antarctic Expedition",
+          content: [
+            {
+              type: "fields",
+              fieldsInfo: [
+                {
+                  fieldName: "{sidepopup}",
+                  visible: true,
+                  label: "{sidepopup}"
+                },
+                {
+                  fieldName: "{PopupInfo}",
+                  visible: true,
+                  label: "{PopupInfo}"
+                }
+                ]
+               //"{PopupInfo}"
+            }]};
+        
+        const sidePopup_Template = {
+          title: "Imperial Trans-Antarctic Expedition",
+          content: "{sidepopup}"
+        };
+        
+        //points labelling ---------------------------------
+        
+        /*const labelClass = {
+          symbol: {
+            type: "text",
+  /*          color: "black",
+            font: {
+              family: "Josefin Sans Regular",
+              size: 12,
+              weight: "bold"
+            },
+            haloColor: "white",
+            haloSize: "1",
+            labelPlacement: "above-right",
+            
+            labelExpressionInfo: {
+    expression: "'This is a test'+$feature.Name"
+            }
+          }};*/
+        
+        //dates symbology (as minimal as possible) ----------------
+        
+        const dates_renderer = {
+          type: "simple",
+          symbol: {
+            size: 0.5,
+            type: "simple-marker",
+            color: "black"
+          }};
+        
+       /* const labelClass = {
+          symbol: {
+            type: "text",
+            color: "black",
+            font: {  // autocast as new Font()
+       family: "Ubuntu Mono",
+       size: 14,
+       weight: "bold"
+     },
+            haloColor: "white",
+            haloSize: "1",
+            labelPlacement: "above-center",
+            labelExpressionInfo: {
+    expression: "Hi"
+            }
+          }}; */
+        
+        //points layer -----------------------------------------
+        
+        const geojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON_realdeal.geojson",
+  copyright: "Get It",
+  renderer: points_renderer,
+  labelsVisible: true,
+  
+  popupTemplate: popup_template, 
+  timeInfo: {
+      startField: "Date",     
+  },
+    
+});
+map.add(geojsonLayer);
+//geojsonLayer.on("click", function(event){
+//  console.log(event.mapPoint);
+        
+      //dates layer ----------------------------------------
+        
+        const geojsonLayer_dates = new GeoJSONLayer({
+  url: "https://andrew-hMiller.github.io/Shackleton/Big_Events_FeaturesToJSON_1.geojson",
+  copyright: "",
+  renderer: dates_renderer,
+  popupTemplate: popup_template,
+  labelsVisible: true,
+  //labelingInfo: [labelClass],
+  labelingInfo: [ {
+    labelExpressionInfo: { expression: "$feature.LABEL" }, //This does not work
+    // labelExpressionInfo: { expression: "$feature.core_details" }, //This works, although it casts to string
+    // labelExpressionInfo: { expression: "Concatenate([$feature.pattern,$feature.is_in_transport_position], TextFormatting.NewLine)" }, //This works
+     labelPlacement: "above-right",
+    symbol: {
+      type: "text",  // autocasts as new TextSymbol()
+      color: "black",
+      haloSize: 1,
+      haloColor: "white",
+      font: {
+        family: "IM FELL DW Pica PRO",
+        style: "italic",
+        weight: "normal",
+        size: 15,
+}
+    }
+  }],
+  timeInfo: {
+      startField: "Date",
+
+         
+  },
+    
+});
+map.add(geojsonLayer_dates);
+        
+      //attempt to create a list of dates for stops on timeslider ---------------  
+        
+        let Dates_array = []
+         uniqueValues({
+          layer: geojsonLayer,
+          field: "Date"
+        }).then(function(response){
+          let infos = response.uniqueValueInfos;
+          infos.forEach(function(info){
+            const dt = new Date(info.value);
+      Dates_array.push(dt);
+          });
+         });  
+        
+      //timeslider widget -----------------------------------
+        
+        const timeSlider = new TimeSlider({
+  container: "timeSlider",
+  view: view,
+  // show data within a given time range
+  // in this case data within one year
+  mode: "time-window",
+  timeVisible: true,
+  fullTimeExtent: { // entire extent of the timeSlider
+    start: new Date(1914, 9, 5),
+    end: new Date(1916, 9, 30)
+  },
+  timeExtent: { // location of timeSlider thumbs
+    start: new Date(1914, 10, 5),
+    end: new Date(1916, 8, 30)
+  },
+   layout: "compact", //HEHREHIOEIRHOIEHROIEHR:IO
+   stops: {
+       //dates: Dates_array
+     dates:
+     [
+      new Date(1914, 11, 5),
+      new Date(1914, 12, 5),
+      new Date(1914, 12, 6),
+      new Date(1914, 12, 7),
+      new Date(1914, 12, 9),
+      new Date(1914, 12, 11),
+      new Date(1914, 12, 17),
+      new Date(1914, 12, 19),
+      new Date(1914, 12, 24),
+      new Date(1914, 12, 26),
+      new Date(1914, 12, 29),
+      new Date(1914, 12, 31),
+      new Date(1915, 1, 2),
+      new Date(1915, 1, 5),
+      new Date(1915, 1, 8),
+      new Date(1915, 1, 10),
+      new Date(1915, 1, 12),
+      new Date(1915, 1, 13),
+      new Date(1915, 1, 15),
+      new Date(1915, 1, 17),
+      new Date(1915, 1, 18),
+      new Date(1915, 1, 24),
+      new Date(1915, 2, 1),
+      new Date(1915, 2, 14),
+      new Date(1915, 3, 3),
+      new Date(1915, 3, 14),
+      new Date(1915, 4, 4),
+      new Date(1915, 5, 1),
+      new Date(1915, 6, 2),
+      new Date(1915, 7, 1),
+      new Date(1915, 8,1),
+      new Date(1915, 8,8),
+      new Date(1916, 9,1),
+      new Date(1915, 10, 1),
+      new Date(1915, 10, 27),
+      new Date(1915, 10, 29),
+      new Date(1915, 11, 2),
+      new Date(1915, 11, 21),
+      new Date(1916, 1, 2),
+      new Date(1916, 2, 14),
+      new Date(1916, 3, 3),
+      new Date(1916, 4, 2),
+      new Date(1916, 4, 7),
+      new Date(1916, 4, 8),
+      new Date(1916, 4, 9),
+      new Date(1916, 4, 10),
+      new Date(1916, 4,11),
+      new Date(1916, 4,12),
+      new Date(1916, 4,13),
+      new Date(1916, 4,14),
+      new Date(1916, 4,15),
+      new Date(1916, 4,17),
+      new Date(1916, 4,27),
+      new Date(1916, 4,29),
+      new Date(1916, 5, 3),
+      new Date(1916, 5,6),
+      new Date(1916, 5,8),
+      new Date(1916, 5,9),
+      new Date(1916, 5,10),
+      new Date(1916, 5,15),
+      new Date(1916, 5,19),
+      new Date(1916, 5,20),
+      new Date(1916, 7,21),
+    ]
+   }
+    
+        });
+//view.ui.add(timeSlider, "manual");
+        
+        
+view.when().then(() => {
+          // Create a default graphic for when the application starts
+          const graphic = {
+            popupTemplate: {
+              content: "Mouse over features to show details..."
+            }
+          };
+
+          // Provide graphic to a new instance of a Feature widget
+          const feature = new Feature({
+            container: "featurenode",
+            graphic: graphic,
+            map: view.map,
+            spatialReference: view.spatialReference
+          });
+  
+          view.whenLayerView(geojsonLayer).then((layerView) => {
+            let highlight;
+            let objectId;
+
+            const debouncedUpdate = promiseUtils.debounce(async (event) => {
+              // Perform a hitTest on the View
+              const hitTest = await view.hitTest(event);
+              // Make sure graphic has a popupTemplate
+              const results = hitTest.results.filter((result) => {
+                return result.layer.popupTemplate; //popupTemplate
+              });
+
+              const result = results[0];
+              const newObjectId =
+                result && result.graphic.attributes[geojsonLayer.objectIdField]; //properties.sidepopup
+
+              if (!newObjectId) {
+                highlight?.remove();
+                objectId = feature.graphic = null;
+              } else if (objectId !== newObjectId) {
+                highlight?.remove();
+                objectId = newObjectId;
+                feature.graphic = result.graphic;
+                highlight = layerView.highlight(result.graphic);
+              }
+            });
+            // Listen for the pointer-move event on the View
+            view.on("pointer-move", (event) => {
+              debouncedUpdate(event).catch((err) => {
+                if (!promiseUtils.isAbortError(err)) {
+                  throw err;
+                }
+              });
+            });
+          });
+});
+});
+        
+        
+    </script>
+  <style>
+    html, body {
+  margin:0;
+  height:100%;
+}
+    </style>
+  </head>
+  <body>
+    <!-- header on page -->
+    
+    <div id="header" style="background-image: url('/Shackleton/endurance_1.jpg'); background-size:contain;">
+<h1>Expedition of Ernest Shackleton and the Endurance</h1>
+<p><em>December 1914 - July 1916</em></p>
+</div>
+     
+                                               
+    <!-- webmap on page -->
+                                              
+    <div id="viewDiv"></div>
+    <div id="timeSlider"></div>
+                     
+    <!-- side panel on page) -->
+                                             
+     <div id="featurenode" class="esri-widget"></div>  
+                                               
+  </body>
+</html>
