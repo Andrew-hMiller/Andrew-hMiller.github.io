@@ -429,6 +429,7 @@ view.when().then(() => {
                 highlight?.remove();
                 objectId = newObjectId;
                 feature.graphic = result.graphic;
+                feature.graphic.layer.popupTemplate = result.layer.sidepopupTemplate;
                 highlight = layerView.highlight(result.graphic);
               }
             });
