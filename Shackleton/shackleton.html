@@ -114,7 +114,6 @@
         
         const ocean_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/ocean_clip.geojson",
-  copyright: "Get It",
   renderer: ocean_renderer
 });
         map.add(ocean_geojsonLayer);
@@ -136,7 +135,6 @@
         
         const continents_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/continents_clip.geojson",
-  copyright: "Andrew Miller's Swag",
   renderer: continent_renderer
 });
         map.add(continents_geojsonLayer);
@@ -153,7 +151,7 @@
      //route layer-------------------------------------------   
         const Lines_geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/new_polylines.geojson",
-  copyright: "Get It",
+  copyright: "Esri",
   renderer: lines_renderer
 });
         map.add(Lines_geojsonLayer);
@@ -170,6 +168,16 @@
             }
           }};
         
+        const newpoints_renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-marker",
+            color: "brown",
+            outline: {
+              color: "black",
+              width: 1
+            }
+          }};
         //points and side popup info --------------------------------
         
         const popup_template = {
@@ -177,9 +185,9 @@
           content: "{PopupInfo}"
         };
         
-        const sidePopup_Template = {
+        const newPopup_Template = {
           title: "Imperial Trans-Antarctic Expedition",
-          content: "{sidepopup}"
+          content: "{newpopup}"
         };
         
         //points labelling ---------------------------------
@@ -231,20 +239,34 @@
         
         //points layer -----------------------------------------
         
+
+        
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON_realdeal.geojson",
-  copyright: "Get It",
+  copyright: "Shackleton, Sir Ernest. South. Elegent Ebooks. 1919.",
   renderer: points_renderer,
   labelsVisible: true,
   
-  popupTemplate: popup_template,
-  sidepopupTemplate: sidePopup_Template, 
+  popupTemplate: popup_template, 
   timeInfo: {
       startField: "Date",     
   },
     
 });
 map.add(geojsonLayer);
+        
+        const newgeojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSONnewpopup_3.geojson",
+  renderer: newpoints_renderer,
+  labelsVisible: true,
+  
+  popupTemplate: newPopup_Template, 
+  timeInfo: {
+      startField: "Date",     
+  },
+    
+});
+map.add(newgeojsonLayer);
 //geojsonLayer.on("click", function(event){
 //  console.log(event.mapPoint);
         
@@ -415,12 +437,12 @@ view.when().then(() => {
               const hitTest = await view.hitTest(event);
               // Make sure graphic has a popupTemplate
               const results = hitTest.results.filter((result) => {
-                return result.layer.sidepopupTemplate; //popupTemplate
+                return result.layer.popupTemplate; //popupTemplate
               });
 
               const result = results[0];
               const newObjectId =
-                result && result.graphic.attributes[geojsonLayer.objectIdField]; //properties.sidepopup
+                result && result.graphic.attributes[newgeojsonLayer.objectIdField]; //properties.sidepopup
 
               if (!newObjectId) {
                 highlight?.remove();
@@ -429,7 +451,6 @@ view.when().then(() => {
                 highlight?.remove();
                 objectId = newObjectId;
                 feature.graphic = result.graphic;
-                feature.graphic.layer.popupTemplate = result.layer.sidepopupTemplate;
                 highlight = layerView.highlight(result.graphic);
               }
             });
