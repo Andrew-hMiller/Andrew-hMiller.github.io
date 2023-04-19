@@ -428,7 +428,7 @@ view.when().then(() => {
               } else if (objectId !== newObjectId) {
                 highlight?.remove();
                 objectId = newObjectId;
-                feature.graphic = structuredClone(result.graphic);
+                feature.graphic = result.graphic;
                 feature.graphic.layer.popupTemplate = result.layer.sidepopupTemplate;
                 highlight = layerView.highlight(result.graphic);
               }
