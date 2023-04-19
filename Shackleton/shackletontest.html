@@ -241,19 +241,7 @@
         
         //points layer -----------------------------------------
         
-        const newgeojsonLayer = new GeoJSONLayer({
-  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSONnewpopup.geojson",
-  copyright: "Get It",
-  renderer: newpoints_renderer,
-  labelsVisible: true,
-  
-  popupTemplate: newPopup_Template, 
-  timeInfo: {
-      startField: "Date",     
-  },
-    
-});
-map.add(newgeojsonLayer);
+
         
         const geojsonLayer = new GeoJSONLayer({
   url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSON_realdeal.geojson",
@@ -269,7 +257,19 @@ map.add(newgeojsonLayer);
 });
 map.add(geojsonLayer);
         
-
+        const newgeojsonLayer = new GeoJSONLayer({
+  url: "https://andrew-hmiller.github.io/Shackleton/Points_FeaturesToJSONnewpopup.geojson",
+  copyright: "Get It",
+  renderer: newpoints_renderer,
+  labelsVisible: true,
+  
+  popupTemplate: newPopup_Template, 
+  timeInfo: {
+      startField: "Date",     
+  },
+    
+});
+map.add(newgeojsonLayer);
 //geojsonLayer.on("click", function(event){
 //  console.log(event.mapPoint);
         
